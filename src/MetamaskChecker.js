@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import getSelectedNetwork from './getSelectedNetwork'
+import checkWeb3 from './checkWeb3'
 import getSelectedAccount from './getSelectedAccount'
 
 
@@ -56,45 +56,27 @@ export default class MetamaskChecker extends Component {
   }
   
   componentDidMount () {
-    window.addEventListener('load', () => this.checkMetamask(window.web3))
+    window.addEventListener('load', () => this.check(window.web3))
   }
   
-  async checkMetamask (web3) {
+  async check (web3) {
     
-    let error = null
-    
-    if (typeof web3 === 'undefined' || ! web3) {
-      
-      error = new Error(`Can't find Metamask's web3 injected object!`)
-    
-    } else if (
-      this.props.network &&
-      parseInt(await getSelectedNetwork(web3)) !== this.props.network
-    ) {
-      
-      error = new Error(`Metamask's selected network is not the same as given (${this.props.network})!`)
-    
-    } else if (
-      this.props.account &&
-      await getSelectedAccount(web3) !== this.props.account
-    ) {
-      
-      error = new Error(`Metamask\'s selected account is not the same as given (${this.props.account})!`)
-    
-    }
-    
-    if (error) {
+    try {
+
+      await checkWeb3(web3, this.props.network, this.props.account)
+
+    } catch (error) {
       console.error(error)
-      
+
       await this.props.onCheckError(error)
-      
+
       this.setState({
         isErrored : true,
         error
       })
-      
-      setTimeout(() => this.checkMetamask(web3), this.props.checkTimeout)
-      
+
+      setTimeout(() => this.check(web3), this.props.checkTimeout)
+
       return
     }
     
@@ -104,7 +86,7 @@ export default class MetamaskChecker extends Component {
     await this.props.onCheckSuccess(this.provider, this.account)
     
     this.setState({
-      isChecked  : true,
+      isChecked : true,
       isErrored : false,
       error     : null
     })

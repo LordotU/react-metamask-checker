@@ -1,7 +1,7 @@
 {
   "name": "react-metamask-checker",
-  "version": "1.0.0",
-  "description": "React component which uses Render Props approach for checking web3 object injected by Metamask extension",
+  "version": "1.0.1",
+  "description": "React component which uses Render Props approach for checking Web3 instance object injected by Metamask extension",
   "main": "build/index.js",
   "scripts": {
     "build": "yarn run clean && yarn babel ./src --out-dir ./build",

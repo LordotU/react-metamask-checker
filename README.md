@@ -34,7 +34,7 @@ import Content from './components/Content'
 
 class App extends Component {
 
-  initialize (provider, account) {
+  async initialize (provider, account) {
     console.log(provider, account)
   }
 
@@ -53,7 +53,7 @@ class App extends Component {
       // onCheckError   : async (error) => null,
 
       /* Function which executes on checking success */
-      onCheckSuccess : async (provider, account) => this.init(provider, account),
+      onCheckSuccess : async (provider, account) => await this.initialize(provider, account),
 
       renderDefault : () => <Loader />,
 

@@ -6,64 +6,72 @@ import getSelectedAccount from './getSelectedAccount'
 
 
 export default class MetamaskChecker extends Component {
-  
+
   state = {
     isChecked : false,
     isErrored : false,
     error     : null
   }
-  
+
   static defaultProps = {
     network : null,
     account : null,
-    
+
     onCheckError   : async () => null,
     onCheckSuccess : async () => null,
-    
+
     renderDefault : () => null,
     renderErrored : () => null,
     renderChecked : () => null,
-    
+
     checkTimeout : 300
   }
-  
+
   static propTypes = {
     network : PropTypes.number,
-    account : (props, propName, componentName) => {
-      if ( ! /^(0x)?[0-9a-f]{40}$/i.test(props[propName])) {
-        return new Error(
-          `Invalid prop \`${propName}\` supplied to \`${componentName}\`.
+    account : PropTypes.oneOfType([
+      PropTypes.oneOf([undefined, null, false]),
+      (props, propName, componentName) => {
+        if (!/^(0x)?[0-9a-f]{40}$/i.test(props[propName])) {
+          return new Error(
+            `Invalid prop \`${propName}\` supplied to \`${componentName}\`.
           Validation failed for value ${props[propName]}.`
-        )
+          )
+        }
       }
-    },
-    
+    ]),
+
     onCheckError   : PropTypes.func,
     onCheckSuccess : PropTypes.func,
-    
+
     renderDefault : PropTypes.func,
     renderErrored : PropTypes.func,
     renderChecked : PropTypes.func,
-    
+
     checkTimeout : PropTypes.number
   }
-  
+
   constructor (props) {
     super(props)
-    
+
     this.provider = null
     this.account  = null
+
+    this.check = this.check.bind(this)
   }
-  
+
   componentDidMount () {
-    window.addEventListener('load', () => this.check(window.web3))
+    window.addEventListener('load', this.check)
   }
-  
-  async check (web3) {
-    
+
+  componentWillUnmount () {
+    window.removeEventListener('load', this.check)
+  }
+
+  async check () {
     try {
 
-      await checkWeb3(web3, this.props.network, this.props.account)
+      await checkWeb3(window.web3, this.props.network, this.props.account)
 
     } catch (error) {
       console.error(error)
@@ -75,33 +83,33 @@ export default class MetamaskChecker extends Component {
         error
       })
 
-      setTimeout(() => this.check(web3), this.props.checkTimeout)
+      setTimeout(() => this.check(window.web3), this.props.checkTimeout)
 
       return
     }
-    
-    this.provider = web3.currentProvider
-    this.account  = await getSelectedAccount(web3)
-    
+
+    this.provider = window.web3.currentProvider
+    this.account  = await getSelectedAccount(window.web3)
+
     await this.props.onCheckSuccess(this.provider, this.account)
-    
+
     this.setState({
       isChecked : true,
       isErrored : false,
       error     : null
     })
   }
-  
+
   render () {
-    
+
     let render = this.props.renderDefault()
-    
+
     if (this.state.isErrored) {
       render = this.props.renderErrored(this.state.error)
     } else if (this.state.isChecked) {
       render = this.props.renderChecked(this.provider, this.account)
     }
-    
+
     return render
   }
 }

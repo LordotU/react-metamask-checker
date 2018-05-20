@@ -1,13 +1,14 @@
 {
   "name": "react-metamask-checker",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "description": "React component which uses Render Props approach for checking Web3 instance object injected by Metamask extension",
   "main": "build/index.js",
   "scripts": {
     "build": "yarn run clean && yarn babel ./src --out-dir ./build",
-    "clean" : "rm -rf ./build",
+    "clean": "rm -rf ./build",
     "prepare": "yarn run build",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "yarn jest",
+    "coverage": "cat ./tests/coverage/lcov.info | yarn coveralls"
   },
   "files": [
     "build"
@@ -32,12 +33,43 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.4",
-    "babel-plugin-transform-export-extensions": "^6.22.0",
+    "babel-jest": "^22.4.3",
     "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-plugin-transform-export-extensions": "^6.22.0",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
+    "coveralls": "^3.0.1",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "enzyme-to-json": "^3.3.3",
+    "jest": "^22.4.3",
+    "jest-cli": "^22.4.3",
+    "jsdom": "^11.10.0",
     "react": "^16.3.1",
-    "react-dom": "^16.3.1"
+    "react-dom": "^16.3.1",
+    "regenerator-runtime": "^0.11.1"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "coveragePathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/tests/"
+    ],
+    "coverageDirectory": "tests/coverage",
+    "coverageReporters": [
+      "json",
+      "lcov",
+      "text",
+      "html"
+    ],
+    "setupTestFrameworkScriptFile": "<rootDir>/tests/setup.js",
+    "testPathIgnorePatterns": [
+      "<rootDir>/build/",
+      "<rootDir>/node_modules/",
+      "<rootDir>/tests/setup.js",
+      "<rootDir>/tests/mocks/",
+      "<rootDir>/tests/coverage/"
+    ]
   }
 }

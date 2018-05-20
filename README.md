@@ -1,6 +1,7 @@
 # React Metamask Checker
 
 [![License](https://img.shields.io/badge/License-MIT-000000.svg)](https://opensource.org/licenses/MIT)
+[![Coverage Status](https://coveralls.io/repos/github/LordotU/react-metamask-checker/badge.svg)](https://coveralls.io/github/LordotU/react-metamask-checker)
 
 ## Description
 

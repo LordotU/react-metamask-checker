@@ -12,14 +12,16 @@ React component which uses [Render Props](https://reactjs.org/docs/render-props.
 ## Installation
 
 ```bash
-yarn install react-metamask-checker
+yarn add react-metamask-checker
 ```
 
-[//]: # ("## Test")
-[//]: # ("")
-[//]: # ("```bash")
-[//]: # ("# Coming soon...")
-[//]: # ("```")
+## Testing
+
+```bash
+yarn test:jest # Runs Jest with coverage collection
+yarn test:coverage # Sends coverage to .coveralls.io
+yarn test # yarn test:jest && yarn test:coverage
+```
 
 ## Usage
 

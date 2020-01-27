@@ -10,7 +10,7 @@ export class MetamaskNotFoundError extends Error {
 
 export default async (ethereum, network = null, account = null) => {
 
-  if (typeof ethereum !== 'object' || ! ethereum.isMetaMask || ethereum === null) {
+  if (typeof ethereum !== 'object' || ethereum === null || ! ethereum.isMetaMask) {
 
     throw new MetamaskNotFoundError(`Can't find ethereum provider object!`)
 

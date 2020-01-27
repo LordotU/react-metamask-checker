@@ -23,16 +23,16 @@
     "clean": "rm -rf ./build",
     "prepare": "yarn run build",
     "test": "yarn test:jest && yarn test:coverage",
-    "test:coverage": "cat ./tests/coverage/lcov.info | yarn coveralls",
+    "test:coverage": "cat ./__tests__/coverage/lcov.info | yarn coveralls",
     "test:jest": "yarn jest"
   },
   "jest": {
     "collectCoverage": true,
-    "coverageDirectory": "tests/coverage",
+    "coverageDirectory": "__tests__/coverage",
     "coveragePathIgnorePatterns": [
       "<rootDir>/build/",
       "<rootDir>/node_modules/",
-      "<rootDir>/tests/"
+      "<rootDir>/__tests__/"
     ],
     "coverageReporters": [
       "json",
@@ -41,14 +41,17 @@
       "html"
     ],
     "setupFilesAfterEnv": [
-      "<rootDir>/tests/setup.js"
+      "<rootDir>/__tests__/setup.js"
+    ],
+    "snapshotSerializers": [
+      "enzyme-to-json/serializer"
     ],
     "testPathIgnorePatterns": [
       "<rootDir>/build/",
       "<rootDir>/node_modules/",
-      "<rootDir>/tests/setup.js",
-      "<rootDir>/tests/mocks/",
-      "<rootDir>/tests/coverage/"
+      "<rootDir>/__tests__/setup.js",
+      "<rootDir>/__tests__/mocks/",
+      "<rootDir>/__tests__/coverage/"
     ],
     "testURL": "http://localhost/"
   },
@@ -67,7 +70,6 @@
     "enzyme-to-json": "^3.4.3",
     "jest": "^25.1.0",
     "jest-cli": "^25.1.0",
-    "jsdom": "^16.0.1",
     "react": "^16.3.1",
     "react-dom": "^16.3.1"
   },

@@ -10,8 +10,6 @@
 
 React component which uses [Render Props](https://reactjs.org/docs/render-props.html) approach for checking Web3 instance object injected by [Metamask](https://metamask.io/) extension.
 
-***Note:*** Web3 API version prior to 1.0 is using for checking.
-
 ## Installation
 
 ```bash

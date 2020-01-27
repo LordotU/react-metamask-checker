@@ -1,7 +1,19 @@
-export default async function getSelectedNetwork (web3) {
-  return await new Promise((resolve, reject) => {
-    web3.version.getNetwork((error, result) => {
-      return error ? reject(error) : resolve(result)
-    })
-  })
+export class SelectedNetworkError extends Error {
+  constructor (message) {
+    super(message)
+  }
+}
+
+const selectedNetworkError = new SelectedNetworkError(`Can't get network, cause Metamask connection problem!`)
+
+export default async ethereum => {
+  try {
+    const network = parseInt((await ethereum.send('eth_chainId')).result)
+
+    return network
+  } catch (error) {
+    console.log(error)
+
+    return selectedNetworkError
+  }
 }

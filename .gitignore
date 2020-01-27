@@ -2,7 +2,7 @@
 
 node_modules/
 build/
-tests/coverage/
+__tests__/coverage/
 
 yarn-error.log
 .coveralls.yml

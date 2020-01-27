@@ -1,7 +1,10 @@
 # React Metamask Checker
 
 [![License](https://img.shields.io/badge/License-MIT-000000.svg)](https://opensource.org/licenses/MIT)
+[![Build Status](https://travis-ci.org/LordotU/react-metamask-checker.svg?branch=master)](https://travis-ci.org/LordotU/react-metamask-checker)
 [![Coverage Status](https://coveralls.io/repos/github/LordotU/react-metamask-checker/badge.svg)](https://coveralls.io/github/LordotU/react-metamask-checker)
+
+## [Live demo](https://react-metamask-checker-demo-with-parcel.lordotu.now.sh)
 
 ## Description
 
@@ -37,32 +40,30 @@ import Content from './components/Content'
 
 class App extends Component {
 
-  async initialize (provider, account) {
-    console.log(provider, account)
+  async initialize (provider, account, network) {
+    console.log(provider, account, network)
   }
 
   render () {
 
     const props = {
-      /* Ethereum account (address) which should be selected in Metamask */
-      // account : null,
       /* Ethereum network_id (numeric) which should be selected in Metamask */
       // network : null,
 
-      /* Checking timeout (ms) in case of checking error */
-      // checkTimeout : 300,
+      /* Ethereum account (address) which should be selected in Metamask */
+      // account : null,
 
       /* Function which executes on checking error */
       // onCheckError   : async (error) => null,
 
       /* Function which executes on checking success */
-      onCheckSuccess : async (provider, account) => await this.initialize(provider, account),
+      onCheckSuccess : async (provider, account, network) => await this.initialize(provider, account, network),
 
       renderDefault : () => <Loader />,
 
       renderErrored : error => <Err message={error.message || 'Unexpected error'} />,
 
-      renderChecked : (provider, account) => <Content />
+      renderChecked : (provider, account, network) => <Content />
     }
 
     return <MetamaskChecker {...props} />

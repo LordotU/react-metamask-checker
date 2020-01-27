@@ -1,6 +1,6 @@
 {
   "name": "react-metamask-checker",
-  "version": "1.3.0",
+  "version": "2.0.0",
   "description": "React component which uses Render Props approach for checking Web3 instance object injected by Metamask extension",
   "keywords": [
     "ethereum",

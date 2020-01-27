@@ -4,6 +4,8 @@
 [![Build Status](https://travis-ci.org/LordotU/react-metamask-checker.svg?branch=master)](https://travis-ci.org/LordotU/react-metamask-checker)
 [![Coverage Status](https://coveralls.io/repos/github/LordotU/react-metamask-checker/badge.svg)](https://coveralls.io/github/LordotU/react-metamask-checker)
 
+## [Live demo](https://react-metamask-checker-demo-with-parcel.lordotu.now.sh)
+
 ## Description
 
 React component which uses [Render Props](https://reactjs.org/docs/render-props.html) approach for checking Web3 instance object injected by [Metamask](https://metamask.io/) extension.

@@ -50,7 +50,7 @@
       "<rootDir>/build/",
       "<rootDir>/node_modules/",
       "<rootDir>/__tests__/setup.js",
-      "<rootDir>/__tests__/mocks/",
+      "<rootDir>/__tests__/__mocks__/",
       "<rootDir>/__tests__/coverage/"
     ],
     "testURL": "http://localhost/"

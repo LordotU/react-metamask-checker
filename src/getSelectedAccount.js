@@ -6,19 +6,16 @@ export class SelectedAccountError extends Error {
 
 const selectedAccountsError = new SelectedAccountError(`Can't get accounts, cause Metamask connection problem!`)
 
-let alreadyRequested = false
-
 export default async ethereum => {
   try {
     let accounts = (await ethereum.send('eth_accounts')).result
 
     if (accounts.length === 0) {
-      if (alreadyRequested) {
+      accounts = (await ethereum.send('eth_requestAccounts')).result
+
+      if (accounts.length === 0) {
         throw selectedAccountsError
       }
-
-      alreadyRequested = true
-      accounts = (await ethereum.send('eth_requestAccounts')).result
     }
 
     return accounts[0]

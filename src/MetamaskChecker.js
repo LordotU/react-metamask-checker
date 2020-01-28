@@ -69,7 +69,7 @@ export default class MetamaskChecker extends Component {
   }
 
   addProviderListeners = () => {
-    (this.provider || { on: function () { return this }})
+    this.provider
       .on('networkChanged', this.check)
       .on('accountsChanged', this.check)
   }

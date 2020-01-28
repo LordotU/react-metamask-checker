@@ -10,10 +10,16 @@ export default async ethereum => {
   try {
     const network = parseInt((await ethereum.send('eth_chainId')).result)
 
+    if (! Number.isFinite(network)) {
+      throw selectedNetworkError
+    }
+
     return network
   } catch (error) {
-    console.log(error)
+    if (! (error instanceof SelectedNetworkError)) {
+      console.error(error)
+    }
 
-    return selectedNetworkError
+    throw selectedNetworkError
   }
 }

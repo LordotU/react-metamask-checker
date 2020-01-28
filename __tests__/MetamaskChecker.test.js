@@ -35,6 +35,16 @@ describe('MetamaskChecker', () => {
         wrapper.unmount()
     })
 
+    it('correctly checks account prop type', async () => {
+        const error = jest.spyOn(console, 'error')
+        shallow( <MetamaskChecker account={'0x1'} /> )
+        expect(error.mock.calls[0][0]).toContain('Invalid prop `account` supplied to `MetamaskChecker`')
+    })
+
+    it('renders null when render props not provided', async () => {
+        expect(shallow( <MetamaskChecker /> ).html()).toBe(null)
+    })
+
     it('renders Loader when nothing happens', async () => {
         expect(wrapper.html()).toEqual('<div id="loader">Loader</div>')
     })

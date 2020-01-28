@@ -2,7 +2,7 @@ export default class MetamaskInpageProvider {
   constructor ({
     isMetaMask = true,
     network = null,
-    accounts = [null],
+    accounts = [],
   } = {}) {
     this.isMetaMask = isMetaMask
 

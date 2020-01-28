@@ -10,6 +10,10 @@
 
 React component which uses [Render Props](https://reactjs.org/docs/render-props.html) approach for checking Web3 instance object injected by [Metamask](https://metamask.io/) extension.
 
+**Note**: since v2.0.0 only new version of Metamask API is supported. Related links:
+  * https://medium.com/metamask/breaking-changes-to-the-metamask-inpage-provider-b4dde069dd0a,
+  * https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider#new-api
+
 ## Installation
 
 ```bash

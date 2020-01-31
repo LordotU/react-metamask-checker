@@ -1,6 +1,6 @@
 {
   "name": "@metamask-checker/react",
-  "version": "2.1.0",
+  "version": "2.1.1",
   "description": "React component which uses Render Props approach for checking Metamask inpage provider object",
   "keywords": [
     "ethereum",

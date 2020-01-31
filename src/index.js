@@ -1,1 +1,1 @@
-export * from './MetamaskChecker'
+export default from './MetamaskChecker'

@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 
-import checkMetamask, { MetamaskNotFoundError } from './checkMetamask'
+import checkMetamask, { MetamaskNotFoundError } from '@metamask-checker/core'
 
 
 export default class MetamaskChecker extends Component {

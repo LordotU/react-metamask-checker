@@ -8,16 +8,20 @@
 
 ## Description
 
-React component which uses [Render Props](https://reactjs.org/docs/render-props.html) approach for checking Web3 instance object injected by [Metamask](https://metamask.io/) extension.
+React component which uses [Render Props](https://reactjs.org/docs/render-props.html) approach for checking [Metamask](https://metamask.io/) inpage provider object.
 
 **Note**: since v2.0.0 only new version of Metamask API is supported. Related links:
-  * https://medium.com/metamask/breaking-changes-to-the-metamask-inpage-provider-b4dde069dd0a,
+  * https://medium.com/metamask/breaking-changes-to-the-metamask-inpage-provider-b4dde069dd0a
   * https://metamask.github.io/metamask-docs/API_Reference/Ethereum_Provider#new-api
 
 ## Installation
 
 ```bash
-yarn add react-metamask-checker
+yarn add @metamask-checker/react
+
+# or
+
+npm install --save @metamask-checker/react
 ```
 
 ## Testing
@@ -26,6 +30,12 @@ yarn add react-metamask-checker
 yarn test:jest # Runs Jest with coverage collection
 yarn test:coverage # Sends coverage to .coveralls.io
 yarn test # yarn test:jest && yarn test:coverage
+
+# or
+
+npm run test:jest
+npm run test:coverage
+npm test
 ```
 
 ## Usage
@@ -34,7 +44,7 @@ yarn test # yarn test:jest && yarn test:coverage
 // ./containers/App.js
 
 import React, { Component } from 'react'
-import MetamaskChecker from 'react-metamask-checker'
+import MetamaskChecker from '@metamask-checker/react'
 
 import Loader from './components/Loader'
 import Err from './components/Error'
